@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 class MoviesProvider {
-  String _apikey = 'cd8faef5c9b47fd260a88b5671d77162';
+  String _apikey = '';
   String _url = 'api.themoviedb.org';
   String _language = 'es-ES';
 
