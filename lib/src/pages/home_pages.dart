@@ -14,7 +14,16 @@ class HomePage extends StatelessWidget {
             actions: <Widget>[
               IconButton(icon: Icon(Icons.search), onPressed: () {})
             ]),
-        body: Container(child: Column(children: <Widget>[_swiperTarjetas()])));
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              _swiperTarjetas(),
+              _footer(context)
+             ]
+          )
+        )
+);
   }
 
   Widget _swiperTarjetas() {
@@ -24,11 +33,32 @@ class HomePage extends StatelessWidget {
         if(snapshot.hasData){
           return CardSwiper(movies: snapshot.data);
         } else {
-          return Container(height: 400.0, child: Center(child: CircularProgressIndicator()));
+          return Container(height: 300.0, child: Center(child: CircularProgressIndicator()));
         }
       }
     );
     // provider.getNowPlaying();
     // return CardSwiper(movies: [1]);
   }
+  Widget _footer(BuildContext context){
+    return Container(
+      width: double.infinity,
+      child: Column(children: <Widget>[
+        Text('Populares', style: Theme.of(context).textTheme.subhead),
+        FutureBuilder(
+          future: provider.getPopular(),
+          builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+            if(snapshot.hasData) return CardSwiper(movies: snapshot.data);
+            else {
+              return Container(height: 300.0, child: Center(child: CircularProgressIndicator()));
+            }
+          }
+        )
+      ],),
+    );
+  }
+
+
 }
+
+
