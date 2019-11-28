@@ -66,4 +66,12 @@ class Movie {
     overview          = json['overview'];
     releaseDate       = json['release_date'];
   }
+
+  getPosterImg(){
+    if(posterPath == null){
+      return 'https://assets.coingecko.com/coins/images/8758/large/ShitCoin.png?1561601773';
+    } else{
+      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    }
+  }
 }
