@@ -44,14 +44,15 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            child: Text('Populares', style: Theme.of(context).textTheme.subhead),
+            child:
+                Text('Populares', style: Theme.of(context).textTheme.subhead),
             padding: EdgeInsets.only(left: 20.0),
-            ),
+          ),
           SizedBox(
             height: 5.0,
           ),
-          FutureBuilder(
-              future: provider.getPopular(),
+          StreamBuilder(
+              stream: provider,
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (snapshot.hasData)
                   return MovieHorinzontal(movies: snapshot.data);
